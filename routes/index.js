@@ -7,13 +7,14 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-  var errors = [];
-  errors.push(validate.nameIsNotBlank(req.body.name));
-  errors.push(validate.emailIsValid(req.body.email));
-  errors.push(validate.phoneIsValid(req.body.phone));
-  errors = validate.validate(errors);
+   var user = {
+     name: req.body.name,
+     phone: req.body.phone,
+     email: req.body.email
+   };
+  var errors = validate.validate(req.body)
   if(errors.length){
-    res.render('index', {errors: errors})
+    res.render('index', {errors: errors, user: user})
   } else {
     res.send('You are so valid!');
   }
