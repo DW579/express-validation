@@ -14,42 +14,42 @@ describe('User Validations', function () {
   });
   describe('Email is Valid', function () {
     xit('should not be blank', function (done) {
-      validate.emailIsNotBlank.should.be.a('function');
-      assert.equal(validate.emailIsNotBlank('    '), 'Email is invalid')
-      assert.equal(validate.emailIsNotBlank('me@me.com'), true)
+      validate.emailIsValid.should.be.a('function');
+      assert.equal(validate.emailIsValid('    '), 'Email is invalid')
+      assert.equal(validate.emailIsValid('me@me.com'), true)
       done();
     });
     xit('should not be just @ symbol', function (done) {
-      assert.equal(validate.emailIsNotBlank('@'), 'Email is invalid')
-      assert.equal(validate.emailIsNotBlank('me@me.it'), true)
+      assert.equal(validate.emailIsValid('@'), 'Email is invalid')
+      assert.equal(validate.emailIsValid('me@me.it'), true)
       done();
     });
     xit('should have text before @ symbol', function (done) {
-      assert.equal(validate.emailIsNotBlank('@i.com'), 'Email is invalid')
-      assert.equal(validate.emailIsNotBlank('you@i.it'), true)
+      assert.equal(validate.emailIsValid('@i.com'), 'Email is invalid')
+      assert.equal(validate.emailIsValid('you@i.it'), true)
       done();
     });
     xit('should have valid text after @ symbol', function (done) {
-      assert.equal(validate.emailIsNotBlank('hello@'), 'Email is invalid')
-      assert.equal(validate.emailIsNotBlank('@i.c'), 'Email is invalid')
-      assert.equal(validate.emailIsNotBlank('me@me.com'), true)
+      assert.equal(validate.emailIsValid('hello@'), 'Email is invalid')
+      assert.equal(validate.emailIsValid('@i.c'), 'Email is invalid')
+      assert.equal(validate.emailIsValid('me@me.com'), true)
       done();
     });
     describe('Phone Number is Valid', function () {
       xit('should not be blank', function (done) {
-        validate.phoneNumberIsValid.should.be.a('function');
-        assert.equal(validate.phoneNumberIsValid('  '), 'Phone number is invalid');
+        validate.phoneIsValid.should.be.a('function');
+        assert.equal(validate.phoneIsValid('  '), 'Phone number is invalid');
         done();
       });
       xit('should have enough digits', function (done) {
-        validate.phoneNumberIsValid.should.be.a('function');
-        assert.equal(validate.phoneNumberIsValid('123555234'), 'Phone number is invalid');
-        assert.equal(validate.phoneNumberIsValid('1235552345'), true);
+        validate.phoneIsValid.should.be.a('function');
+        assert.equal(validate.phoneIsValid('123555234'), 'Phone number is invalid');
+        assert.equal(validate.phoneIsValid('1235552345'), true);
         done();
       });
       xit('should accept dashes in input', function (done) {
-        validate.phoneNumberIsValid.should.be.a('function');
-        assert.equal(validate.phoneNumberIsValid('123-555-2345'), true);
+        validate.phoneIsValid.should.be.a('function');
+        assert.equal(validate.phoneIsValid('123-555-2345'), true);
         done();
       });
     });

@@ -3,9 +3,7 @@
 * Be able to check for valid user input
 * Be able to extract validation functions out of routes
 * Be able to display validation errors to user
-* be able to use includes to display validation errors
 * Be able to execute Test Driven Development
-
 
 ## Set Up
 
