@@ -1,9 +1,13 @@
-extends layout 
+extends layout
 
-block content 
+block content
 
   div.container
     form(action='/' method='post')
+      if errors
+        p= errorsName
+        p= errorsPhone
+        p= errors
       h1 Sign Up
       div.form-group
         label(for="author") Name
