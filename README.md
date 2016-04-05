@@ -1,3 +1,5 @@
+Dustin's heroku deployed assignment is at: https://pacific-wildwood-82271.herokuapp.com/
+
 ## Objectives
 
 * Be able to check for valid user input
