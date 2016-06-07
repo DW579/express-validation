@@ -1,49 +1,47 @@
 var express = require('express');
 var router = express.Router();
 
+var validations = require('../lib/validations.js')
+
 router.get('/', function(req, res, next) {
   res.render('index');
 });
 
 router.post('/', function(req, res, next) {
-  var errorsName = [];
+  var inputName = [];
+  var inputPhone = [];
+  var inputEmail = [];
   var errors = [];
-  var errorsPhone = [];
   var emailSplit = req.body.email.trim().split('');
   var emailReverseSplit = req.body.email.trim().split('').reverse();
 
-  if (req.body.name.trim().length === 0) {
-    errorsName.push('Name cannot be blank');
+  if (validations.nameIsNotBlank(req.body.name) === 'Name cannot be blank') {
+    errors.push('Name cannot be blank');
+  }
+  else {
+    inputName.push(req.body.name);
   }
 
-  if (req.body.phone.trim().length === 0) {
-    errorsPhone.push('Phone number is invalid');
+  if (validations.phoneIsValid(req.body.phone) === 'Phone number is invalid') {
+    errors.push('Phone number is invalid');
   }
-  else if (req.body.phone.trim().length < 10) {
-    errorsPhone.push('Phone number is invalid');
-  }
-  else if (req.body.phone.trim().length >= 13) {
-    errorsPhone.push('Phone number is invalid');
+  else {
+    inputPhone.push(req.body.phone);
   }
 
-  if (req.body.email.trim().length === 0) {
+  if (validations.emailIsValid(req.body.email) === 'Email is invalid') {
     errors.push('Email is invalid');
   }
-  else if (req.body.email.trim() === '@') {
-    errors.push('Email is invalid');
-  }
-  else if (emailSplit[0] === '@') {
-    errors.push('Email is invalid');
-  }
-  else if (emailReverseSplit[0] !== 'm' || emailReverseSplit[1] !== 'o' || emailReverseSplit[2] !== 'c' || emailReverseSplit[3] !== '.') {
-    errors.push('Email is invalid');
+  else {
+    inputEmail.push(req.body.email);
   }
 
   if (errors.length) {
-    res.render('index', {errorsName: errorsName, errors: errors, errorsPhone: errorsPhone});
+    res.render('index', {errors: errors, inputName: inputName, inputPhone: inputPhone, inputEmail: inputEmail});
   }
-
-  console.log('You are so valid');
+  else {
+    console.log('You are so valid');
+  }
 });
 
 module.exports = router;

@@ -5,16 +5,16 @@ block content
   div.container
     form(action='/' method='post')
       if errors
-        p= errorsName
-        p= errorsPhone
-        p= errors
+        p= errors[0]
+        p= errors[1]
+        p= errors[2]
       h1 Sign Up
       div.form-group
         label(for="author") Name
-        input.form-control(type="text" id="name" name='name' placeholder="Your Name")
+        input.form-control(type="text" id="name" name='name' placeholder="Your Name" value= inputName)
       div.form-group
         label(for="title") Phone Number
-        input.form-control(type="text" id="phone" name='phone' placeholder="774-992-3345")
+        input.form-control(type="text" id="phone" name='phone' placeholder="774-992-3345" value= inputPhone)
       div.form-group
         label(for="title") Email
         input.form-control(type="text" id="email" name='email' placeholder="you@somewhere.com")
